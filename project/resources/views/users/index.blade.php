@@ -13,23 +13,22 @@
         </div>
 
         @endif
-        <div>
-            <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        <div class="row">
+        
+            <div class="col-sm-4 max-w-6xl mx-auto py-10 sm:px-6 lg:px-8 bg-white-500 hover:bg-white-700 text-white font-bold py-2 px-4 rounded">
                 @if(Auth::user()->rol=="admin")
 
 
-                <a href="{{ route('home.send') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="background-color: green; color:white; margin-left: 29px; margin-bottom:5px">Invite User</a>
+                <a href="{{ route('invite.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="background-color: green; color:white; margin-left: 29px; margin-bottom:5px">Invite User</a>
                      <br></br>
-					 
+	
 
-
-
-                <div class="block mb-8">
+      
+                <div class="col-sm-4">
                     <a href="{{ route('users.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="background-color: green; color:white; margin-left: 29px; margin-bottom:5px">Add User</a>
                 <br></br>
-
-
                 </div>
+
                 @endif
                 <div class="flex flex-col">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -81,9 +80,9 @@
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <a href="{{ route('users.show', $user->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2" style="color:black">View</a>
 
-                                                @if(Auth::user()->rol=="admin")
+                                                 @if(Auth::user()->rol=="admin")
                                                 <a href="{{ route('users.edit', $user->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Edit</a>
-                                                @endif
+                                                 @endif 
                                                 @if($user->id != Auth::user()->id)
                                                 @if(Auth::user()->rol=="admin")
                                                 <form class="inline-block" action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">

@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('tasks', \App\Http\Controllers\TaskController::class);
     Route::resource('search', \App\Http\Controllers\LiveSearchController::class);
     Route::resource('searchUser', \App\Http\Controllers\LiveSearchUserController::class);
-    Route::resource('emails', \App\Http\Controllers\HomeController::class);
+  Route::resource('emails', \App\Http\Controllers\HomeController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
     Route::resource('invite', \App\Http\Controllers\InviteController::class);
 
@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/send', '\App\Http\Controllers\HomeController@send')->name('home.send');
 	
-    Route::get('account/verify/{token}', [AuthController::class, 'verifyAccount'])->name('user.verify'); 
+    Route::get('account/verify/', [AuthController::class, 'verifyAccount'])->name('user.verify'); 
     // Route::get('/send', '\App\Http\Controllers\HomeController@send')->name('home.send');
 
     Route::get('/action1', [LiveSearchController::class, 'action1'])->name('action1');

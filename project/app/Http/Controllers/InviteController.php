@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\StoreInviteRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
@@ -26,28 +27,33 @@ class InviteController extends Controller
        
         $roles = Role::pluck('title', 'id');
 
-        return view('emails.', compact('roles'));
+        return view('invite.liveinvite', compact('roles'));
     }
 
 
-    public function store(StoreUserRequest $request)
+    public function store(StoreInviteRequest $request)
     {
         $user = User::create($request->validated());
         $user->roles()->sync($request->input('roles', []));
+        
+       // echo var_dump($user);
 
         $project = [
             'greeting' => 'Hi '.$user->name.',',
             'body' => 'This is the project assigned to you.',
-            'thanks' => 'Thank you this is from http://127.0.0.1:8000/reset-password/0ced13de682d263c6b3266dab9fcc72cbd5e1de1674a7cb1db622c98dd05a8a6?email',
+            'thanks' => 'Thank you this is from codeanddeploy.com',
 
             'actionText' => 'Register',
-            'actionURL' => url('http://127.0.0.1:8000/reset-password/0ced13de682d263c6b3266dab9fcc72cbd5e1de1674a7cb1db622c98dd05a8a6?email'),
+            'actionURL' => url('http://127.0.0.1:8000/register'),
             'id' => 1
         ];
 
         Notification::send($user, new EmailNotification($project));
+        $user->delete();
 
-        return view('home.send');
+        //return redirect()->route('users.index');
+
+        return view('emails.welcome');
     }
 
 

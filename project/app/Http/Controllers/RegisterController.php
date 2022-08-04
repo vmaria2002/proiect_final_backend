@@ -32,8 +32,8 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
-        auth()->login($user);
+       // auth()->login($user);
 
-        return redirect('/')->with('success', "Account successfully registered.");
+        return redirect('emails.welcome')->with('success', "Account successfully registered.");
     }
 }

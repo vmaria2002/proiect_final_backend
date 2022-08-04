@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,23 +48,27 @@ class UserController extends Controller
     
     public function store(StoreUserRequest $request)
     {
-        $user = User::create($request->validated());
+      //  $user = User::create($request->validated());
+$user= User::create([
+            'name' => $request['name'],
+            'password' => Hash::make($request['password']),
+            'email' => $request['email']]);
+
         $user->roles()->sync($request->input('roles', []));
+        
+       // echo var_dump($user);
 
         $project = [
             'greeting' => 'Hi '.$user->name.',',
-            'body' => 'This is the project assigned to you.',
-            'thanks' => 'Thank you this is from codeanddeploy.com',
-
-            'actionText' => 'Register',
-            'actionURL' => url('http://127.0.0.1:8000/reset-password/0ced13de682d263c6b3266dab9fcc72cbd5e1de1674a7cb1db622c98dd05a8a6?email'),
+            'body' => ' Maria has added you to the database! Your date: '.$user.'password:'. $user->password,
+            'thanks' => 'You can visit the site by pressing the button or accessing the link',
+            'actionText' => 'Visit',
+            'actionURL' => url('http://127.0.0.1:8000/login'),
             'id' => 1
         ];
 
         Notification::send($user, new EmailNotification($project));
-
-
-
+    
         return redirect()->route('users.index');
     }
 
