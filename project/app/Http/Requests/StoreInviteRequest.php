@@ -12,15 +12,14 @@ class StoreInviteRequest extends FormRequest
         return [
             'name'     => [
                 'string',
+                'min:3',
+                'max:50',
                 'required',
             ],
             'email'    => [
                 'required',
                 'unique:users',
-            ],
-
-          
-           
+            ],       
         ];
     }
 
