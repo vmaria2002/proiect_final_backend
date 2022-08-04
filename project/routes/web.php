@@ -36,6 +36,7 @@ Route::middleware([
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('verification', \App\Http\Controllers\VerificationController::class);
     Route::resource('tasks', \App\Http\Controllers\TaskController::class);
+    Route::resource('student', \App\Http\Controllers\StudentController::class);
     Route::resource('search', \App\Http\Controllers\LiveSearchController::class);
     Route::resource('searchUser', \App\Http\Controllers\LiveSearchUserController::class);
   Route::resource('emails', \App\Http\Controllers\HomeController::class);
@@ -57,3 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

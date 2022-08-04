@@ -13,19 +13,17 @@
         </div>
 
         @endif
-        <div class="row">
-
-            <div class="col-sm-4 max-w-6xl mx-auto py-10 sm:px-6 lg:px-8 bg-white-500 hover:bg-white-700 text-white font-bold py-2 px-4 rounded">
+        <div>
+            <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8  text-white font-bold py-2 px-4 rounded">
                 @if(Auth::user()->rol=="admin")
+                <br></br>
 
-
-                <a href="{{ route('invite.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="background-color: green; color:white; margin-left: 29px; margin-bottom:5px">Invite User</a>
+                <a href="{{ route('home.send') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="background-color: green; color:white; margin-left: 29px; margin-bottom:5px">Invite User</a>
                 <br></br>
 
                 @endif
 
-
-
+                @endif
                 <div class="flex flex-col">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -74,19 +72,48 @@
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                <a href="{{ route('users.show', $user->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2" style="color:black">View</a>
+                                                <a href="{{ route('users.show', $user->id) }}" class="text-blue-600 hover:text-white mb-2 mr-2" style="color:black">View</a>
 
                                                 @if(Auth::user()->rol=="admin")
                                                 <a href="{{ route('users.edit', $user->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Edit</a>
                                                 @endif
                                                 @if($user->id != Auth::user()->id)
                                                 @if(Auth::user()->rol=="admin")
-                                                <form class="inline-block" action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                                                <!-- <form class="inline-block" action="{{ route('users.destroy', $user->id) }}" method="POST">
                                                     <input type="hidden" name="_method" value="DELETE">
 
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2" value="Delete">
-                                                </form>
+                                                </form> -->
+
+                                                <button type="button" class="btn" data-id="<?php echo $user->id; ?>" onclick="confirmDelete(this);">Delete</button>
+
+
+                                                <div id="myModal" class="modal">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" style="color:black">Delete User</h4>
+                                                                <button type="button" class="close" style="color:black" data-dismiss="modal">×</button>
+                                                            </div>
+
+                                                            <div class="modal-body" style="color:black">
+                                                                <p>Are you sure you want to delete this user ?</p>
+                                                                <form method="POST" action="{{ route('users.destroy', $user->id) }}" id="form-delete-user">
+                                                                    <input type="hidden" name="id">
+                                                                </form>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" onclick="closeWin(this);">Close</button>
+                                                                <button type="submit" form="form-delete-user" class="btn btn-danger">Delete</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 @endif
                                                 @else
                                                 @if(Auth::user()->rol=="admin")
@@ -104,17 +131,15 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-
                             </div>
+                        </div><br></br>@if(Auth::user()->rol=="admin")
+
+
+                        <div class="block mb-8">
+                            <a href="{{ route('users.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="background-color: green; color:white; margin-left: 29px; margin-bottom:5px">Add User</a>
                             <br></br>
 
-                            @if(Auth::user()->rol=="admin")
-                            <div class="col-sm-4">
-                                <a href="{{ route('users.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="background-color: green; color:white; margin-left: 29px; margin-bottom:5px">Add User</a>
-                                <br></br>
-                            </div>
 
-                            @endif
                         </div>
                     </div>
                 </div>
@@ -123,4 +148,22 @@
         <span>
             {{$users->links()}}
         </span>
+
+
+
+
 </x-app-layout>
+<script>
+    function confirmDelete(self) {
+        var id = self.getAttribute("data-id");
+
+        document.getElementById("form-delete-user").id.value = id;
+        $("#myModal").modal("show");
+    }
+</script>
+
+<script>
+    function closeWin() {
+        myWindow.close();
+    }
+</script>
