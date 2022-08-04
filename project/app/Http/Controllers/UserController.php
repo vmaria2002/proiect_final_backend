@@ -51,16 +51,16 @@ class UserController extends Controller
       //  $user = User::create($request->validated());
 $user= User::create([
             'name' => $request['name'],
+            'remember_token' => $request['password'],
             'password' => Hash::make($request['password']),
             'email' => $request['email']]);
-
         $user->roles()->sync($request->input('roles', []));
         
        // echo var_dump($user);
 
         $project = [
             'greeting' => 'Hi '.$user->name.',',
-            'body' => ' Maria has added you to the database! Your date: '.$user.'password:'. $user->password,
+            'body' => ' Maria has added you to the database! Your date: '.$user->email.'   password:'. $user->remember_token,
             'thanks' => 'You can visit the site by pressing the button or accessing the link',
             'actionText' => 'Visit',
             'actionURL' => url('http://127.0.0.1:8000/login'),
