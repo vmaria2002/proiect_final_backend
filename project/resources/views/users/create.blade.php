@@ -102,24 +102,26 @@
                         </div> -->
                         <div class="px-4 py-5 bg-white sm:p-6">
 
-                        <label for="psw">Password</label>
-                        <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                            <label for="psw">Password</label>
+                            <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
 
 
-                        <div id="message">
-                            <h3>Password must contain the following:</h3>
-                            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                            <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                            <p id="number" class="invalid">A <b>number</b></p>
-                            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                            <div id="message">
+                                <h3>Password must contain the following:</h3>
+                                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                                <p id="number" class="invalid">A <b>number</b></p>
+                                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                            </div>
                         </div>
-                        <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                            <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                                Create
-                            </button>
-                        </div>
+                        
+                            <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                    Create
+                                </button>
+                            </div>
 
-                    </div>
+                        
                 </form>
             </div>
         </div>

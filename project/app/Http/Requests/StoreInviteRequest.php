@@ -19,7 +19,8 @@ class StoreInviteRequest extends FormRequest
             'email'    => [
                 'required',
                 'unique:users',
-            ],       
+            ],  
+            'password',     
         ];
     }
 
