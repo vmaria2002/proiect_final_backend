@@ -39,12 +39,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('student', \App\Http\Controllers\StudentController::class);
     Route::resource('search', \App\Http\Controllers\LiveSearchController::class);
     Route::resource('searchUser', \App\Http\Controllers\LiveSearchUserController::class);
-  Route::resource('emails', \App\Http\Controllers\HomeController::class);
+    Route::resource('emails', \App\Http\Controllers\HomeController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
     Route::resource('invite', \App\Http\Controllers\InviteController::class);
 
 
- Route::get('send-mail', [MailController::class, 'index']);
+    Route::get('send-mail', [MailController::class, 'index']);
     Route::get('send-mail', [MailController::class, 'index']);
 
 	

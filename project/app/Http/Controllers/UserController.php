@@ -107,15 +107,17 @@ $user= User::create([
             return back()->with('error', 'The error message here!');
             // return redirect()->route('users.index');
         }
+      
 
+       else{
+     //   var_dump($user);
         $user->delete();
-
+      //  var_dump($user);
         return redirect()->route('users.index');
+       }
     }
     public function pericol(User $user)
     {
-        
-
         return redirect()->route('users.pericol');
     }
 }

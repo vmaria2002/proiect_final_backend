@@ -1,6 +1,4 @@
 <x-app-layout>
-
-
     <x-slot name="header">
         Users List
         </h2>
@@ -87,63 +85,54 @@
                                                 </form> -->
 
                                                 <button type="button" class="btn" data-id="<?php echo $user->id; ?>" onclick="confirmDelete(this);">Delete</button>
-
-
                                                 <div id="myModal" class="modal">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
-
                                                             <div class="modal-header">
                                                                 <h4 class="modal-title" style="color:black">Delete User</h4>
-                                                                <button type="button" class="close" style="color:black" data-dismiss="modal">×</button>
+                                                                <button type="button" class="close" style="color:black" data-dismiss="modal">&times;</button>
                                                             </div>
-
                                                             <div class="modal-body" style="color:black">
                                                                 <p>Are you sure you want to delete this user ?</p>
-                                                                <form method="POST" action="{{ route('users.destroy', $user->id) }}" id="form-delete-user">
+                                                                <form method="PUT" action="{{route('users.destroy', $user->id)}}" id="form-delete-user">
                                                                     <input type="hidden" name="id">
                                                                 </form>
                                                             </div>
                                                             <button id='close'>
-                                                                <div class="modal-footer"style="text-align:center;color:black">
+                                                                <div class="modal-footer" style="text-align:center;color:black">
                                                                     <div class="a" style="text-align:center;color:black">
-
-                                                                        Close</div>
+                                                                        Close</div> <button type="submit" form="form-delete-user" class="btn btn-danger">Delete</button>
+                                                                </div>
                                                             </button>
-                                                            <!-- <button onclick=window.close()>Close Window</button> -->
-                                                            <!-- <button type="button" class="btn btn-default" onclick="closeWin(this);">Close</button> -->
-                                                            <button type="submit" form="form-delete-user" class="btn btn-danger">Delete</button>
                                                         </div>
-
-
                                                     </div>
-                                                </div>
-                            </div>
-                            @endif
-                            @else
-                            @if(Auth::user()->rol=="admin")
-                            <form class="inline-block" action="{{ route('users.show', $user->id) }}" method="POST">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2" style="color:green" value="Delete">
-                                @endif
-                                @endif
-                                </td>
-                                </tr>
-                                @endforeach
-                                </tbody>
+                                                    <!-- </div> -->
+                                                    @endif
+                                                    @else
+                                                    @if(Auth::user()->rol=="admin")
+                                                  
+                                                <form class="inline-block" action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                        <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2" style="color:green" value="Delete">
+                                                        @endif
+                                                        @endif
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
+                            </div>
+                        </div><br></br>@if(Auth::user()->rol=="admin")
+
+
+                        <div class="block mb-8">
+                            <a href="{{ route('users.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="background-color: green; color:white; margin-left: 29px; margin-bottom:5px">Add User</a>
+                            <br></br>
                         </div>
-                    </div><br></br>@if(Auth::user()->rol=="admin")
-
-
-                    <div class="block mb-8">
-                        <a href="{{ route('users.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="background-color: green; color:white; margin-left: 29px; margin-bottom:5px">Add User</a>
-                        <br></br>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         <span>
             {{$users->links()}}
@@ -176,6 +165,7 @@ newwindow.document.write("<button onclick='window.close()'>Close Window</button>
         document.getElementById('close').onclick = function() {
             this.parentNode.remove()
             window.close()
+            location.reload()
             return false;
         };
     };
