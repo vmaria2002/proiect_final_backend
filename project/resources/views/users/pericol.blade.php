@@ -1,1 +1,0 @@
-Eroare! Nu puteti sterge propriul cont!!
