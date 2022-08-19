@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" >
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Presentation') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -36,6 +36,11 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('searchUser.index') }}" :active="request()->routeIs('searchUser.index')">
                    <b> {{ __('Search Users') }}</b>
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" style="color:red!important">
+                    <x-jet-nav-link href="{{ route('onlineshopping.index') }}" :active="request()->routeIs('onlineshopping.index')">
+                   <i> {{ __('Online Shopping') }}</i>
                     </x-jet-nav-link>
                 </div>
 

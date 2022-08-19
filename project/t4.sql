@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2022 at 08:27 AM
+-- Generation Time: Aug 19, 2022 at 05:02 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -18,8 +18,46 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `t3`
+-- Database: `t4`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'blanditiis magni', 'blanditiis-magni', '2022-08-18 16:34:58', '2022-08-18 16:34:58'),
+(2, 'neque et', 'neque-et', '2022-08-18 16:34:58', '2022-08-18 16:34:58'),
+(3, 'ut quos', 'ut-quos', '2022-08-18 16:34:58', '2022-08-18 16:34:58'),
+(4, 'iste ut', 'iste-ut', '2022-08-18 16:34:58', '2022-08-18 16:34:58'),
+(5, 'quisquam aperiam', 'quisquam-aperiam', '2022-08-18 16:34:58', '2022-08-18 16:34:58'),
+(6, 'quod autem', 'quod-autem', '2022-08-18 16:34:58', '2022-08-18 16:34:58'),
+(7, 'ipsam voluptatem', 'ipsam-voluptatem', '2022-08-18 16:36:48', '2022-08-18 16:36:48'),
+(8, 'voluptatem omnis', 'voluptatem-omnis', '2022-08-18 16:36:48', '2022-08-18 16:36:48'),
+(9, 'qui nostrum', 'qui-nostrum', '2022-08-18 16:36:48', '2022-08-18 16:36:48'),
+(10, 'quasi eos', 'quasi-eos', '2022-08-18 16:36:48', '2022-08-18 16:36:48'),
+(11, 'in et', 'in-et', '2022-08-18 16:36:48', '2022-08-18 16:36:48'),
+(12, 'est ut', 'est-ut', '2022-08-18 16:36:48', '2022-08-18 16:36:48'),
+(13, 'soluta recusandae', 'soluta-recusandae', '2022-08-18 16:38:22', '2022-08-18 16:38:22'),
+(14, 'nihil commodi', 'nihil-commodi', '2022-08-18 16:38:22', '2022-08-18 16:38:22'),
+(15, 'repellendus minima', 'repellendus-minima', '2022-08-18 16:38:22', '2022-08-18 16:38:22'),
+(16, 'perspiciatis aut', 'perspiciatis-aut', '2022-08-18 16:38:22', '2022-08-18 16:38:22'),
+(17, 'dolorem culpa', 'dolorem-culpa', '2022-08-18 16:38:22', '2022-08-18 16:38:22'),
+(18, 'quisquam aut', 'quisquam-aut', '2022-08-18 16:38:22', '2022-08-18 16:38:22');
 
 -- --------------------------------------------------------
 
@@ -67,7 +105,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2022_07_31_130803_create_permission_role_table', 5),
 (12, '2022_08_01_092620_create_paginare_table', 5),
 (13, '2022_08_01_121745_create_user_verifies_table', 5),
-(14, '2022_08_01_132033_create_notifications_table', 5);
+(14, '2022_08_01_132033_create_notifications_table', 5),
+(15, '2022_08_03_084907_create_user_verifies_table', 6),
+(16, '2022_08_04_220325_create_students_table', 6),
+(17, '2022_08_18_181907_create_categories_table', 6),
+(18, '2022_08_18_182029_create_products_table', 6),
+(19, '2022_08_19_120205_create_products_table', 7);
 
 -- --------------------------------------------------------
 
@@ -168,6 +211,34 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` decimal(6,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `description`, `photo`, `price`, `created_at`, `updated_at`) VALUES
+(1, 'Samsung Galaxy S9', 'A brand new, sealed Lilac Purple Verizon Global Unlocked Galaxy S9 by Samsung. This is an upgrade. Clean ESN and activation ready.', 'https://i.ebayimg.com/00/s/ODY0WDgwMA==/z/9S4AAOSwMZRanqb7/$_35.JPG?set_id=89040003C1', '698.88', NULL, NULL),
+(2, 'Apple iPhone X', 'GSM & CDMA FACTORY UNLOCKED! WORKS WORLDWIDE! FACTORY UNLOCKED. iPhone x 64gb. iPhone 8 64gb. iPhone 8 64gb. iPhone X with iOS 11.', 'https://kwingy.com/wp-content/uploads/2022/05/apple-iphone-x-64gb-space-grey-with-facetime-d85_1-1-600x600-1.jpg', '983.00', NULL, NULL),
+(3, 'Google Pixel 2 XL', 'New condition\n • No returns, but backed by eBay Money back guarantee', 'https://s13emagst.akamaized.net/products/9595/9594608/images/res_3fe695b0d0f9c47990ffa15a69fda86f.jpg', '675.00', NULL, NULL),
+(4, 'LG V10 H900', 'NETWORK Technology GSM. Protection Corning Gorilla Glass 4. MISC Colors Space Black, Luxe White, Modern Beige, Ocean Blue, Opal Blue. SAR EU 0.59 W/kg (head).', 'https://i.ebayimg.com/00/s/NjQxWDQyNA==/z/VDoAAOSwgk1XF2oo/$_35.JPG?set_id=89040003C1', '159.99', NULL, NULL),
+(5, 'Huawei Elate', 'Cricket Wireless - Huawei Elate. New Sealed Huawei Elate Smartphone.', 'https://ssli.ebayimg.com/images/g/aJ0AAOSw7zlaldY2/s-l640.jpg', '68.00', NULL, NULL),
+(6, 'HTC One M10', 'The device is in good cosmetic condition and will show minor scratches and/or scuff marks.', 'https://i.ebayimg.com/images/g/u-kAAOSw9p9aXNyf/s-l500.jpg', '129.99', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `roles`
 --
 
@@ -230,7 +301,22 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('pcwDU8vGZ4QahdceyeQpj7EaNhm3z23qW8BtYYzN', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNE5JMFU0M25iVThrSmtZVTFsbmZUWTNsNUw0MlpKSGhuU0VzZmhhYiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1659451071);
+('OLvnDeNZwrxnftQuAjiiEyxjFjH26A37wJqnnLPx', 11, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36', 'YTo4OntzOjY6Il90b2tlbiI7czo0MDoic0pVRHZNODVjTDVpdnpLTjVUeVBZUmJ4SzZ5bjdrMjRQVUdLS1RpeSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxMTtzOjQ6ImF1dGgiO2E6MTp7czoyMToicGFzc3dvcmRfY29uZmlybWVkX2F0IjtpOjE2NjA5MTAxMDU7fXM6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkekFMTjk5d1pxdEJpbTBab3pJamgzZURReFZkZlBlbC9XdTFmeTRQckpoZy9SN1lzclZNNjIiO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJHpBTE45OXdacXRCaW0wWm96SWpoM2VEUXhWZGZQZWwvV3UxZnk0UHJKaGcvUjdZc3JWTTYyIjtzOjQ6ImNhcnQiO2E6NDp7aToxO2E6NDp7czo0OiJuYW1lIjtzOjE3OiJTYW1zdW5nIEdhbGF4eSBTOSI7czo4OiJxdWFudGl0eSI7aTo0O3M6NToicHJpY2UiO3M6NjoiNjk4Ljg4IjtzOjU6InBob3RvIjtzOjg1OiJodHRwczovL2kuZWJheWltZy5jb20vMDAvcy9PRFkwV0Rnd01BPT0vei85UzRBQU9Td01aUmFucWI3LyRfMzUuSlBHP3NldF9pZD04OTA0MDAwM0MxIjt9aToyO2E6NDp7czo0OiJuYW1lIjtzOjE0OiJBcHBsZSBpUGhvbmUgWCI7czo4OiJxdWFudGl0eSI7aToxO3M6NToicHJpY2UiO3M6NjoiOTgzLjAwIjtzOjU6InBob3RvIjtzOjg1OiJodHRwczovL2kuZWJheWltZy5jb20vMDAvcy9NVFl3TUZnNU9UVT0vei85VUFBQU9Td0Z5aGFGWFpKLyRfMzUuSlBHP3NldF9pZD04OTA0MDAwM0MxIjt9aTo0O2E6NDp7czo0OiJuYW1lIjtzOjExOiJMRyBWMTAgSDkwMCI7czo4OiJxdWFudGl0eSI7aToyO3M6NToicHJpY2UiO3M6NjoiMTU5Ljk5IjtzOjU6InBob3RvIjtzOjg1OiJodHRwczovL2kuZWJheWltZy5jb20vMDAvcy9OalF4V0RReU5BPT0vei9WRG9BQU9Td2drMVhGMm9vLyRfMzUuSlBHP3NldF9pZD04OTA0MDAwM0MxIjt9aTo1O2E6NDp7czo0OiJuYW1lIjtzOjEyOiJIdWF3ZWkgRWxhdGUiO3M6ODoicXVhbnRpdHkiO2k6MTtzOjU6InByaWNlIjtzOjU6IjY4LjAwIjtzOjU6InBob3RvIjtzOjYxOiJodHRwczovL3NzbGkuZWJheWltZy5jb20vaW1hZ2VzL2cvYUowQUFPU3c3emxhbGRZMi9zLWw2NDAuanBnIjt9fX0=', 1660920456);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `course` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -319,6 +405,12 @@ CREATE TABLE `user_verifies` (
 --
 
 --
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -371,6 +463,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -383,6 +481,12 @@ ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sessions_user_id_index` (`user_id`),
   ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tasks`
@@ -408,6 +512,12 @@ ALTER TABLE `user_verifies`
 --
 
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -417,7 +527,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -444,10 +554,22 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tasks`
