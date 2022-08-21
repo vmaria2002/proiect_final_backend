@@ -54,8 +54,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cart', [ProductsController::class, 'cart']);
     Route::get('add-to-cart/{id}', [ProductsController::class, 'addToCart']);
 
-    Route::get('update-cart', [ProductsController::class, 'update']);
-    Route::get('remove-from-cart', [ProductsController::class, 'remove']);
+    Route::get('update-cart/{id}/{cantity}', [ProductsController::class, 'update']);
+    Route::get('remove-from-cart/{id}', [ProductsController::class, 'remove']);
+    Route::get('delete-from-cart/{id}', [ProductsController::class, 'delete']);
 
     Route::resource('emails', \App\Http\Controllers\HomeController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
