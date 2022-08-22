@@ -58,6 +58,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('remove-from-cart/{id}', [ProductsController::class, 'remove']);
     Route::get('delete-from-cart/{id}', [ProductsController::class, 'delete']);
 
+    Route::get('buy/{id}', [ProductsController::class, 'buy']);
+
     Route::resource('emails', \App\Http\Controllers\HomeController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
     Route::resource('invite', \App\Http\Controllers\InviteController::class);
