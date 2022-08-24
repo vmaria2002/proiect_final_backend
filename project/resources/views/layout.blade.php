@@ -31,39 +31,71 @@
                     <button type="button" class="btn btn-info" data-toggle="dropdown">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ $total }}</span>
                     </button>
+
                     <div class="dropdown-menu">
                         <div class="row total-header-section">
                             <div class="col-lg-6 col-sm-6 col-6">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ $total }}</span>
                             </div>
 
-
-
-
                         </div>
 
                         @if(session('cart'))
                         @foreach(session('cart') as $id => $details)
 
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{ $details['photo'] }}"  alt="Card image cap">
+                        <div class="card" style="width: 18rem;"><a href="{{ url('details/'.$id) }}">
+                            <img class="card-img-top" src="{{ $details['photo'] }}" alt="Card image cap"></a>
                             <div class="card-body">
                                 <p class="card-text">Name: {{ $details['name'] }}</p>
                                 <p class="card-text">Price: {{ $details['price'] }}$ </p>
                                 <p class="card-text">Quantity: {{ $details['quantity'] }}</p>
-                                
+
                             </div>
                         </div>
-
-
-            
-
 
                         @endforeach
                         @endif
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
                                 <a href="{{ url('cart') }}" class="btn btn-primary btn-block">View all</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-sm-12 col-12 main-section">
+                <div class="dropdown">
+                <?php $total = 0 ?>
+                    @foreach((array) session('favorites') as $id => $details)
+                    <?php $total +=  $details['quantity'] ?>
+                    @endforeach
+                    <button type="button" class="btn btn-danger" style="margin-top:-67px; margin-left:130px " data-toggle="dropdown">
+                        <i class="fa fa-heart" aria-hidden="true"></i> Favorites<span class="badge badge-pill badge-warning">{{ $total }}</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        
+
+
+                        @if(session('favorites'))
+                        @foreach(session('favorites') as $id => $details)
+
+                        <div class="card" style="width: 18rem;"><a href="{{ url('details/'.$id) }}">
+                            <img class="card-img-top" src="{{ $details['photo'] }}" alt="Card image cap"></a>
+                            <div class="card-body">
+                                <p class="card-text">Name: {{ $details['name'] }}</p>
+                                <p class="card-text">Price: {{ $details['price'] }}$ </p>
+
+
+                            </div>
+                        </div>
+
+                        @endforeach <div class="row">
+
+                            @endif
+                            <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
+                                <a href="{{ url('favorites') }}" class="btn btn-primary btn-block">View all</a>
                             </div>
                         </div>
                     </div>

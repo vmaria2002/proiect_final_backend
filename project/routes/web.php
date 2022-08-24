@@ -52,12 +52,18 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('onlineshopping', \App\Http\Controllers\ProductsController::class);
     Route::get('cart', [ProductsController::class, 'cart']);
+    Route::get('favorites', [ProductsController::class, 'favorites']);
     Route::get('add-to-cart/{id}', [ProductsController::class, 'addToCart']);
+    Route::get('addToFavorites/{id}', [ProductsController::class, 'addToFavorites']);
+    
 
     Route::get('update-cart/{id}/{cantity}', [ProductsController::class, 'update']);
     Route::get('remove-from-cart/{id}', [ProductsController::class, 'remove']);
-    Route::get('delete-from-cart/{id}', [ProductsController::class, 'delete']);
+    Route::get('remove-from-favorites/{id}', [ProductsController::class, 'removeFromFavorites']);
 
+
+    Route::get('delete-from-cart/{id}', [ProductsController::class, 'delete']);
+    Route::get('details/{id}', [ProductsController::class, 'details']);
     Route::get('buy/{id}', [ProductsController::class, 'buy']);
 
     Route::resource('emails', \App\Http\Controllers\HomeController::class);

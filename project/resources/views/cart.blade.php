@@ -3,10 +3,9 @@
 @extends('layout')
 @section('title', 'Cart')
 @section('content')
+
 <div class="row total-header-section">
-                      
-                        
-                        
+                                 
                     </div>
     <table id="cart" class="table table-hover table-condensed">
         <thead>
@@ -27,7 +26,7 @@
                 <tr>
                     <td data-th="Product">
                         <div class="row">
-                            <div class="col-sm-3 hidden-xs"><img src="{{ $details['photo'] }}" width="100" height="100" class="img-responsive"/></div>
+                            <div class="col-sm-3 hidden-xs"> <a href="{{ url('details/'.$id) }}"><img src="{{ $details['photo'] }}" width="100" height="100" class="img-responsive"/></a></div>
                             <div class="col-sm-9">
                                 <h4 class="nomargin">{{ $details['name'] }}</h4>
                             </div>
