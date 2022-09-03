@@ -19,7 +19,7 @@
                         <p class="card-text" style="height:170px!important">{{(strtolower($product->description)) }}</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Price: </strong> {{ $product->price }}$</li>
+                        <li class="list-group-item"><strong>Price: $</strong> {{ $product->price }}</li>
                     </ul>
                     <div class="card-body">
                         <p class="btn-danger"><a href="{{ url('add-to-cart/'.$product->id) }}" class="btn btn-danger btn-block text-center" role="button"><i class="fa fa-shopping-cart "></i> Add to cart</a> </p>

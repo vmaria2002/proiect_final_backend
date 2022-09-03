@@ -19,7 +19,7 @@
         </thead>
         <tbody>
         <?php $total = 0 ?>
-      
+        <?php $message = "[" ?>
         @if(session('cart'))
             @foreach(session('cart') as $id => $details)
                 <?php $total += $details['price'] * $details['quantity'] ?>
@@ -37,6 +37,7 @@
                         <input type="number" id="quantity" name="quantity"  value="{{ $details['quantity'] }}" class="form-control quantity" />
                     </td>
                     <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}</td>
+                    <?php $message = $message.'"'.$details['name'].'|'. $details['price'].'|'.$details['quantity'].'|'. $details['price'] * $details['quantity'].',"' ?>
                     
                     <br></br>
                     <td class="actions" data-th="">
@@ -59,6 +60,7 @@
         <tr class="visible-xs">
             <td class="text-center"><strong>Total {{ $total }}</strong></td>
         </tr>
+        <?php $message.='"]'.'****Total:**** '.$total?>
         <tr>
             <td><a href="{{ url('onlineshopping') }}" class="btn btn-success"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
             <td colspan="2" class="hidden-xs"></td>
@@ -158,8 +160,8 @@
                   <p class="mb-2">Total (tax included)</p>
                   <p class="mb-2">${{ $total+2.99 }}</p>
                 </div>
-
-                 <p class="btn btn-primary btn-block btn-lg" ><a href="{{ url('buy/'.Auth::user()->email ) }}" class="d-flex justify-content-between text-white"  role="button">${{ $total+2.99 }}  [Send] </a> </p> 
+                 
+                 <p class="btn btn-primary btn-block btn-lg" ><a href="{{ url('buy/'.Auth::user()->id.'/'.$message ) }}" class="d-flex justify-content-between text-white"  role="button">${{ $total+2.99 }}  [Send] </a> </p> 
 
               
                 </button>

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SendEmailController;
 use \App\Http\Controllers\ProductsController;
+use \App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\VerificationController;
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('student', \App\Http\Controllers\StudentController::class);
     Route::resource('search', \App\Http\Controllers\LiveSearchController::class);
     Route::resource('searchUser', \App\Http\Controllers\LiveSearchUserController::class);
+    Route::resource('searchProducts', \App\Http\Controllers\LiveSearchProductsController::class);
+
 
     Route::resource('onlineshopping', \App\Http\Controllers\ProductsController::class);
     Route::get('cart', [ProductsController::class, 'cart']);
@@ -64,22 +67,21 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('delete-from-cart/{id}', [ProductsController::class, 'delete']);
     Route::get('details/{id}', [ProductsController::class, 'details']);
-    Route::get('buy/{id}', [ProductsController::class, 'buy']);
+   
 
     Route::resource('emails', \App\Http\Controllers\HomeController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
     Route::resource('invite', \App\Http\Controllers\InviteController::class);
 
-
+ Route::get('buy/{id}/{message}', [UserController::class, 'buy']);
     Route::get('send-mail', [MailController::class, 'index']);
     Route::get('send-mail', [MailController::class, 'index']);
 
 
     Route::get('/send', '\App\Http\Controllers\HomeController@send')->name('home.send');
-
     Route::get('account/verify/', [AuthController::class, 'verifyAccount'])->name('user.verify');
     // Route::get('/send', '\App\Http\Controllers\HomeController@send')->name('home.send');
-
+    Route::get('/action3', [LiveSearchProductsController::class, 'action3'])->name('action3');
     Route::get('/action1', [LiveSearchController::class, 'action1'])->name('action1');
     Route::get('/action', [LiveSearchUserController::class, 'action'])->name('action');
 });

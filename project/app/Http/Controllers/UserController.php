@@ -120,6 +120,52 @@ $user= User::create([
     {
         return redirect()->route('users.pericol');
     }
+
+
+
+
+    public function buy($id, $message){
+
+        $student = User::find($id);
+        if($student){
+    
+            $this->id = $student->id;
+            $this->name = $student->name;
+            $this->email = $student->email;
+            $this->password = $student->password;
+        }else{
+            return redirect()->to('/users');
+        }
+    
+        $messag = [
+            'greeting' => 'Hi '.$student->name.',',
+            'body' => ' you have an order. Your ptoducts/name/price/quantity/subtotal*****'. $message,
+            'thanks' => 'You can visit the online shopping site by pressing the button or accessing the link',
+            'actionText' => 'Visit the site',
+            'actionURL' => url('http://127.0.0.1:8000/onlineshopping'),
+            'id' => 1
+        ];
+        Notification::send($student, new EmailNotification($messag));
+       
+       
+       
+        // delete cart:
+    
+    $cart = session()->get('cart');
+       
+     session()->put('cart', $cart);
+     for($i=1; $i<=6; $i++)
+    
+    {
+     
+     unset($cart[$i]);
+        }
+     session()->put('cart', $cart);
+    
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    
+        
+      }
 }
 
 
